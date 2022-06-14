@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MIMIC-III Explorer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>MIMIC-III Explorer</h1>
+        <select id="patients" class="form-select">
+            <option></option>
+        </select>
+        <div class="container" id="patient">
+            <p>Paciente: <span id="patient-id"></span></p>
+            <p>Fecha de nacimiento: <span id="patient-dob"></span></p>
+            <p>Género: <span id="patient-gender"></span></p>
+        </div>
+        <select id="icustays" class="form-select">
+            <option></option>
+        </select>
+        <div class="container" id="icustay">
+            <p>Hospitalización en UCI: <span id="icustay-id"></span></p>
+            <p>Fecha de entrada: <span id="patient-intime"></span></p>
+            <p>Largo de la estadía: <span id="patient-los"></span></p>
+        </div>
+        <select id="items" class="form-select">
+            <option></option>
+        </select>
+        <div id="chart"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
