@@ -9,6 +9,8 @@ $(document).ready(function () {
         });
     });
     $('#patients').on('change', function (e) {
+        $('#patient').show();
+        $('#icustays-form').show();
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
         $.get(`${ENDPOINT}/patients?subject_id=eq.${valueSelected}`, function (data, status) {
@@ -17,6 +19,7 @@ $(document).ready(function () {
             $("#patient-gender").text(data[0].gender);
         });
         $.get(`${ENDPOINT}/icustays?subject_id=eq.${valueSelected}&select=icustay_id`, function (data, status) {
+            $('#icustays').empty().append('<option></option>');
             $.each(data, function (i, item) {
                 $('#icustays').append($('<option>', {
                     value: item.icustay_id,
@@ -27,17 +30,20 @@ $(document).ready(function () {
     });
     let icustay_id
     $('#icustays').on('change', function (e) {
+        $('#icustay').show();
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
         icustay_id = this.value
         $.get(`${ENDPOINT}/icustays?icustay_id=eq.${valueSelected}`, function (data, status) {
-            $("#patient-id").text(data[0].subject_id);
+            $("#icustay-id").text(data[0].icustay_id);
             $("#patient-intime").text(data[0].intime);
             $("#patient-los").text(data[0].los);
         });
         $.get(`${ENDPOINT}/chartevents_d_items?icustay_id=eq.${valueSelected}&valuenum=not.is.null&select=d_itemid,label`, function (data, status) {
+            $('#items-form').show();
             let data_unique = [...new Map(data.map((item) => [item["d_itemid"], item])).values()];
             $.each(data_unique, function (i, item) {
+                $('#items').empty().append('<option></option>');
                 $('#items').append($('<option>', {
                     value: item.d_itemid,
                     text: item.label
@@ -46,6 +52,7 @@ $(document).ready(function () {
         });
     });
     $('#items').on('change', function (e) {
+        $('#chart').empty()
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
         $.get(`${ENDPOINT}/chartevents_d_items?icustay_id=eq.${icustay_id}&valuenum=not.is.null&select=charttime,valuenum&d_itemid=eq.${valueSelected}`, function (data, status) {
